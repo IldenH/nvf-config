@@ -5,7 +5,7 @@
   ...
 }:
 let
-  vault_path = "notes/obsidian";
+  vault_path = "dev/Vault";
 in
 {
   vim = {
