@@ -26,25 +26,26 @@ in
       (util.mkLuaKeymap "n" "<leader>cle" (mkSpell [
         "en_us"
         "nb"
-        "fr"
         "nn"
-      ]) "Engelsk")
-      (util.mkLuaKeymap "n" "<leader>clf" (mkSpell [
-        "fr"
+        "de"
+      ]) "English US")
+      (util.mkLuaKeymap "n" "<leader>cld" (mkSpell [
+        "de"
         "en_us"
         "nb"
         "nn"
-      ]) "Fransk")
+      ]) "Deutsch")
       (util.mkLuaKeymap "n" "<leader>clb" (mkSpell [
         "nb"
         "en_us"
-        "fr"
+        "de"
       ]) "Norsk Bokmål")
       (util.mkLuaKeymap "n" "<leader>cln" (mkSpell [
         "nn"
         "en_us"
-        "fr"
+        "de"
       ]) "Norsk Nynorsk")
+
       (util.mkKeymap "n" "<leader>cg" "zg" "Mark as correct")
       (util.mkKeymap "n" "<leader>cw" "zw" "Mark as wrong")
       (util.mkKeymap "n" "<leader>cu" "zuw" "Undo mark")
