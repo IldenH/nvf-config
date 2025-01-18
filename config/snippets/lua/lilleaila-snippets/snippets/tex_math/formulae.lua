@@ -1,5 +1,4 @@
 local ls = require("lilleaila-snippets.helpers.ls")
-local i, rep, fmta = ls.i, ls.rep, ls.fmta
 local tex = require("lilleaila-snippets.helpers.tex")
 local utils = require("lilleaila-snippets.helpers.util")
 local tasnip = tex.tasnip
@@ -34,4 +33,10 @@ return {
   msnip({ trig = "fder", descr = "Definisjonen av den deriverte" }, [[
     \lim_{ h \to 0 } \frac{ f \left( x + h \right) - f \left( x \right) }{h}
   ]]),
+  msnip({ trig = "dprod", descr = "Derivasjon av produkt" }, [[
+    \left( $1 \right)' \left( $2 \right) + \left( $1 \right) \left( $2 \right)'
+  ]]),
+  msnip({ trig = "ddiv", descr = "Derivasjon av brøk" }, [[
+    \frac{\left( $1 \right)' \left( $2 \right) - \left( $1 \right) \left( $2 \right)'}{\left( $2 \right) ^{2}}
+  ]])
 }

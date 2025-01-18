@@ -19,7 +19,12 @@ local M = {
       $1&$2 & $0
     \end{align*}
   ]]),
+
   _masnip({ trig = "aa", name = "answer" }, fmta([[\ans{<>}]], { d(1, utils.get_visual) })),
+  masnip({ trig = "na", name = "newline with answer" }, [[
+    \\\\
+    \ans{$1&$2} & $0
+  ]]),
 }
 
 return M

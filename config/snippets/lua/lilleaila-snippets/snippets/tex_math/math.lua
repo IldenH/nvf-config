@@ -12,15 +12,13 @@ local msnip = tex.masnip
 local _msnip = tex._masnip
 
 M = {
+  masnip({ trig = "tt", name = "Text" }, [[\text{$1}]]),
+
   -- align-environments
   -- for some reason \\ expands to \ even when it's inside [[]] /shrug
   masnip({ trig = "nn", name = "newline" }, [[
     \\\\
     $1&$2 & $0
-  ]]),
-  masnip({ trig = "na", name = "newline with answer" }, [[
-    \\\\
-    \ans{$1&$2} & $0
   ]]),
 
   msnip({ trig = "lim", descr = "Limit" }, [[\lim_{$1 \to $2}]]),
@@ -29,9 +27,12 @@ M = {
   msnip({ trig = "l0", descr = "Limit" }, [[\lim_{x \to 0}]]),
 
   masnip({ trig = "*", name = "multiplication" }, [[\cdot]]),
-  _masnip({ trig = "^", name = "exponent" }, fmta([[^{<>}]], { d(1, utils.get_visual) })),
-  _masnip({ trig = "_", name = "subscript" }, fmta([[_{<>}]], { d(1, utils.get_visual) })),
-  _masnip({ trig = "uu", name = "underset" }, fmta([[\underset{<>}{<>}]], { i(1), d(2, utils.get_visual) })),
+  _masnip({ trig = "^", name = "exponent", condition = tex.in_math }, fmta([[^{<>}]], { d(1, utils.get_visual) })),
+  _masnip({ trig = "_", name = "subscript", condition = tex.in_math }, fmta([[_{<>}]], { d(1, utils.get_visual) })),
+  _masnip({ trig = "su", name = "underset" }, fmta([[\underset{<>}{<>}]], { i(1), d(2, utils.get_visual) })),
+  _masnip({ trig = "so", name = "overset" }, fmta([[\overset{<>}{<>}]], { i(1), d(2, utils.get_visual) })),
+  _masnip({ trig = "bo", name = "overbrace" }, fmta([[\overbrace{<>}^{<>}]], { d(1, utils.get_visual), i(2) })),
+  _masnip({ trig = "bu", name = "underbrace" }, fmta([[\underbrace{<>}_{<>}]], { d(1, utils.get_visual), i(2) })),
   _masnip({ trig = "ss", name = "square root" }, fmta([[\sqrt{<>}]], { d(1, utils.get_visual) })),
   _masnip({ trig = "sr", name = "nth root" }, fmta([=[\sqrt[<>]{<>}]=], { i(1), d(2, utils.get_visual) })),
   masnip({ trig = "!=", name = "not equal" }, [[\neq]]),
@@ -43,6 +44,7 @@ M = {
   _masnip({ trig = "vv", name = "Vector" }, fmta([[\vec{<>}]], { d(1, utils.get_visual) })),
   _masnip({ trig = "sin", name = "Sine" }, fmta([[\sin{<>}]], { d(1, utils.get_visual) })),
   _masnip({ trig = "cos", name = "Cosine" }, fmta([[\cos{<>}]], { d(1, utils.get_visual) })),
+  masnip({ trig = "==", name = "Is equal?" }, [[\overset{?}{=}]]),
 
   msnip("pm", [[\pm]]),
   msnip("in", [[\in]]),
@@ -56,6 +58,10 @@ M = {
   msnip("sm", [[\setminus]]),
   msnip("pi", [[\pi]]),
   msnip("perp", [[\perp]]),
+  msnip("rarr", [[\rightarrow]]),
+  msnip("larr", [[\leftarrow]]),
+  msnip("Rarr", [[\Rightarrow]]),
+  msnip("Larr", [[\Leftarrow]]),
 
   msnip("alpha", [[\alpha]]),
   msnip("Delta", [[\Delta]]),

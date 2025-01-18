@@ -22,11 +22,6 @@ let
 in
 {
   vim = {
-    binds.whichKey.register = {
-      "<leader>c" = " Spellcheck";
-      "<leader>cl" = "󰗊 Language";
-    };
-
     keymaps = [
       (util.mkLuaKeymap "n" "<leader>cle" (mkSpell [
         "en_us"

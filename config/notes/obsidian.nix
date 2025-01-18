@@ -95,10 +95,6 @@ in
       };
     };
 
-    binds.whichKey.register = {
-      "<leader>o" = " Obsidian";
-    };
-
     keymaps = [
       (util.mkKeymap "n" "<leader>on" "<cmd>ObsidianNew<cr>" " New note")
       (util.mkKeymap "n" "<leader>op" "<cmd>ObsidianOpen<cr>" " Open")

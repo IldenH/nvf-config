@@ -9,6 +9,9 @@
         "<leader>d" = " Debug";
         "<leader>l" = " LSP";
         "<leader>b" = " Buffer";
+        "<leader>c" = " Spellcheck";
+        "<leader>cl" = "󰗊 Language";
+        "<leader>o" = " Obsidian";
       };
       setupOpts = {
         preset = "classic";
