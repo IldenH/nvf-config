@@ -42,22 +42,12 @@ in
           lib.generators.mkLuaInline # lua
             ''
               function(title)
-                local name = ""
-                if title ~= nil then
-                  name = title
-                else
-                  -- Ask the user for a name
-                  name = vim.fn.input("Enter note name: ")
-                  if name == "" then
-                    -- If no name is given, generate a random one.
-                    for _ = 1, 5 do
-                      name = name .. string.char(math.random(65, 90))
-                    end
-                  end
+                if title == nil or title == "" then
+                  error("Title cannot be empty")
                 end
-                -- transform the name into a valid file name and append the date in ISO 8601 format
-                local suffix = name:gsub(" ", "-"):lower():gsub("[^a-z0-9-æøå]", "")
-                return tostring(os.date("%Y%m%dT%H%M")) .. "-" .. suffix
+
+                local name = title:gsub(" ", "-"):lower():gsub("[^a-z0-9-æøå]", "")
+                return name
               end
             '';
 
