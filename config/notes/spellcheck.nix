@@ -23,8 +23,8 @@ in
 {
   vim = {
     binds.whichKey.register = {
-      "<leader>c" = "Spellcheck";
-      "<leader>cl" = "Language";
+      "<leader>c" = " Spellcheck";
+      "<leader>cl" = "󰗊 Language";
     };
 
     keymaps = [
