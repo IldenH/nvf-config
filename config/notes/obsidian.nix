@@ -12,23 +12,22 @@ in
     notes.obsidian = {
       enable = true;
       setupOpts = {
-        mappings = [ ];
         log_level = lib.generators.mkLuaInline "vim.log.levels.ERROR";
 
         workspaces = [
           {
-            name = "personal";
+            name = "Vault";
             path = "~/${vault_path}";
           }
         ];
-        notes_subdir = "Notes";
-        attachments.img_folder = "Assets";
+        notes_subdir = "notes";
+        attachments.img_folder = "assets";
         daily_notes = {
-          folder = "Daily";
+          folder = "daily";
           date_format = "%Y-%m-%d";
-          default_tags = [ "daily-notes" ];
         };
 
+        completion.min_chars = 0;
         picker = {
           name = "fzf-lua";
           mappings.new = "<C-x>";
@@ -37,39 +36,7 @@ in
           tag_mappings.insert_tag = "<C-l>";
         };
 
-        # [[this]] type of links
-        preferred_link_style = "wiki";
-
-        disable_frontmatter = false;
-        note_frontmatter_func =
-          lib.generators.mkLuaInline # lua
-            ''
-              function (note)
-                if note.title then
-                  note:add_alias(note.title)
-                end
-
-                local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-
-                if not note.date then
-                  local date = tostring(os.date("%Y-%m-%d"))
-                  out.date = date
-                end
-
-                if note.title then
-                  out.title = note.title
-                end
-
-                -- Keep existing items
-                if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-                  for k, v in pairs(note.metadata) do
-                    out[k] = v
-                  end
-                end
-
-                return out
-              end
-            '';
+        preferred_link_style = "markdown";
 
         note_id_func =
           lib.generators.mkLuaInline # lua
@@ -139,22 +106,21 @@ in
     };
 
     binds.whichKey.register = {
-      "<leader>o" = "Obsidian";
+      "<leader>o" = " Obsidian";
     };
 
     keymaps = [
-      (util.mkKeymap "n" "<leader>od" ":ObsidianToday<cr>" "Daily note")
-      (util.mkKeymap "n" "<leader>oD" ":ObsidianDailies<cr>" "Daily note history")
-
-      (util.mkKeymap "n" "<leader>oo" ":ObsidianQuickSwitch<cr>" "Open note")
-      (util.mkKeymap "n" "<leader>os" ":ObsidianSearch<cr>" "Search notes")
-      (util.mkKeymap "n" "<leader>oa" ":ObsidianOpen<cr>" "Open in app")
-      (util.mkKeymap "n" "<leader>or" ":ObsidianRename<cr>" "Rename note")
-
-      (util.mkKeymap "n" "<leader>ob" ":ObsidianBacklinks<cr>" "Backlinks")
-      (util.mkKeymap "n" "<leader>ot" ":ObsidianTags<cr>" "Tags")
-
-      (util.mkKeymap "n" "<leader>op" ":ObsidianPasteImg<cr>" "Paste image")
+      (util.mkKeymap "n" "<leader>on" "<cmd>ObsidianNew<cr>" " New note")
+      (util.mkKeymap "n" "<leader>op" "<cmd>ObsidianOpen<cr>" " Open")
+      (util.mkKeymap "n" "<leader>or" "<cmd>ObsidianRename<cr>" "󱇨 Rename")
+      (util.mkKeymap "x" "<leader>oe" "<cmd>ObsidianExtractNote<cr>" "󰩭 Extract note")
+      (util.mkKeymap "n" "<leader>ob" "<cmd>ObsidianBacklinks<cr>" " Backlinks")
+      (util.mkKeymap "n" "<leader>of" "<cmd>ObsidianQuickSwitch<cr>" " Find")
+      (util.mkKeymap "n" "<leader>os" "<cmd>ObsidianSearch<cr>" " Search")
+      (util.mkKeymap "n" "<leader>od" "<cmd>ObsidianDailies<cr>" " Dailies")
+      (util.mkKeymap "n" "<leader>ot" "<cmd>ObsidianToday<cr>" " Today")
+      (util.mkKeymap "n" "<leader>oi" "<cmd>ObsidianPasteImg<cr>" " Paste img")
+      (util.mkKeymap "n" "<leader>oa" "<cmd>ObsidianTags<cr>" " Tags")
     ];
 
     utility.images.image-nvim = {
