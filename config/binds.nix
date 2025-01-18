@@ -12,7 +12,11 @@
       setupOpts = {
         preset = "classic";
         delay = 0;
-        icons.mappings = false;
+        icons = {
+          mappings = false;
+          separator = "➜";
+          group = "";
+        };
         win.border = "none";
         triggers = [
           {
