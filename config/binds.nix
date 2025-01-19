@@ -8,7 +8,6 @@
         "<leader>g" = " Git";
         "<leader>d" = " Debug";
         "<leader>l" = " LSP";
-        "<leader>b" = " Buffer";
         "<leader>c" = " Spellcheck";
         "<leader>cl" = "󰗊 Language";
         "<leader>o" = " Obsidian";

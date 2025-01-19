@@ -66,7 +66,5 @@
         latex
       ];
     };
-
-    autopairs.nvim-autopairs.enable = true;
   };
 }

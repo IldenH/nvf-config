@@ -40,6 +40,7 @@
       cursorline = true;
       encoding = "utf-8";
       fileencoding = "utf-8";
+      fillchars = "eob: "; # Disable the "~" chars at end of buffer
     };
 
     globals = {

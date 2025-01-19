@@ -1,3 +1,4 @@
+{ lib, colorScheme', ... }:
 {
   vim = {
     theme = {
@@ -9,33 +10,12 @@
       style = "dark";
     };
 
-    statusline = {
-      lualine = {
-        enable = true;
-      };
-    };
-
-    tabline.nvimBufferline = {
-      enable = true;
-      setupOpts = {
-        options = {
-          numbers = "none";
-          tab_size = 14;
-          pick.alphabet = "abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
-        };
-      };
-      mappings = {
-        cycleNext = "<tab>";
-        cyclePrevious = "<S-tab>";
-        moveNext = "<C-.>";
-        movePrevious = "<C-,>";
-        closeCurrent = "<C-c>";
-      };
-    };
-
     visuals = {
       nvim-web-devicons.enable = true;
-      indent-blankline.enable = true;
     };
+
+    luaConfigRC.highlights = lib.nvim.dag.entryAnywhere ''
+      vim.api.nvim_set_hl(0, "SignColumn", {bg = "${colorScheme'.base00}"})
+    '';
   };
 }
