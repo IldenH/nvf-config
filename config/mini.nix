@@ -13,14 +13,8 @@
       git.enable = true;
       diff.enable = true;
       align.enable = true;
-      notify.enable = true;
       files.enable = true;
-      indentscope = {
-        enable = true;
-        setupOpts.draw.animation = lib.generators.mkLuaInline ''require("mini.indentscope").gen_animation.none()'';
-      };
       operators.enable = true;
-      starter.enable = true;
       trailspace.enable = true;
       jump2d = {
         enable = true;
