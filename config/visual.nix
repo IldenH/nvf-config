@@ -12,6 +12,20 @@
 
     visuals = {
       nvim-web-devicons.enable = true;
+      indent-blankline = {
+        enable = true;
+        setupOpts = {
+          indent = {
+            char = "▍";
+            smart_indent_cap = true;
+          };
+          scope = {
+            enabled = true;
+            show_start = false;
+            show_end = false;
+          };
+        };
+      };
     };
 
     luaConfigRC.highlights = lib.nvim.dag.entryAnywhere ''
