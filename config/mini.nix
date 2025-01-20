@@ -58,11 +58,11 @@
               group = "Headline4";
             };
             headline5 = {
-              pattern = "^#### .*";
+              pattern = "^##### .*";
               group = "Headline5";
             };
             headline6 = {
-              pattern = "^##### .*";
+              pattern = "^###### .*";
               group = "Headline6";
             };
 
