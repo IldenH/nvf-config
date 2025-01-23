@@ -26,6 +26,7 @@
           };
         };
       };
+      rainbow-delimiters.enable = true;
     };
 
     luaConfigRC.highlights = lib.nvim.dag.entryAnywhere ''
