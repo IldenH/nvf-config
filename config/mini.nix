@@ -19,7 +19,7 @@
       jump2d = {
         enable = true;
         setupOpts = {
-          labels = "abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
+          labels = "asdfghjklqwertyuiopzxcvbnm";
           mappings.start_jumping = "<leader><space>";
           view.dim = true;
           silent = true;
