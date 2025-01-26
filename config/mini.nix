@@ -20,7 +20,7 @@
         enable = true;
         setupOpts = {
           labels = "abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
-          mappings.start_jumping = "<cr>";
+          mappings.start_jumping = "<leader><space>";
           view.dim = true;
           silent = true;
         };

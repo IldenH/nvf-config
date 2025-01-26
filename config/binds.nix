@@ -11,6 +11,7 @@
         "<leader>c" = " Spellcheck";
         "<leader>cl" = "󰗊 Language";
         "<leader>o" = " Obsidian";
+        "<leader><space>" = "Jump";
       };
       setupOpts = {
         preset = "classic";
