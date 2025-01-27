@@ -45,6 +45,10 @@
       trouble.enable = true;
       lspSignature.enable = true;
       otter-nvim.enable = true;
+      mappings = {
+        nextDiagnostic = "<leader>j";
+        previousDiagnostic = "<leader>k";
+      };
     };
 
     debugger = {
