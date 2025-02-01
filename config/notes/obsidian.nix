@@ -95,6 +95,17 @@ in
       };
     };
 
+    highlight =
+      with colorScheme';
+      lib.mapAttrs' (name: value: lib.nameValuePair "@markup.heading.${name}.markdown" { fg = value; }) {
+        "1" = base08;
+        "2" = base0A;
+        "3" = base0B;
+        "4" = base0C;
+        "5" = base0D;
+        "6" = base0E;
+      };
+
     keymaps = [
       (util.mkKeymap "n" "<leader>on" "<cmd>ObsidianNew<cr>" " New note")
       (util.mkKeymap "n" "<leader>op" "<cmd>ObsidianOpen<cr>" " Open")
