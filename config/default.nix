@@ -10,6 +10,7 @@
     ./snippets
     ./mini.nix
     ./oil.nix
+    ./hop.nix
   ];
 
   _module.args.colorScheme' = lib.attrsets.mapAttrs (_: value: "#${value}") colorScheme.palette;

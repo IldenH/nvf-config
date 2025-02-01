@@ -16,15 +16,6 @@
       files.enable = true;
       operators.enable = true;
       trailspace.enable = true;
-      jump2d = {
-        enable = true;
-        setupOpts = {
-          labels = "asdfghjklqwertyuiopzxcvbnm";
-          mappings.start_jumping = "<leader><space>";
-          view.dim = true;
-          silent = true;
-        };
-      };
       hipatterns = {
         enable = true;
         setupOpts.highlighters =
