@@ -41,31 +41,6 @@
             note = mkHi "NOTE" "MiniHipatternsNote";
             fixme = mkHi "FIXME" "MiniHipatternsFixme";
 
-            headline1 = {
-              pattern = "^# .*";
-              group = "Headline1";
-            };
-            headline2 = {
-              pattern = "^## .*";
-              group = "Headline2";
-            };
-            headline3 = {
-              pattern = "^### .*";
-              group = "Headline3";
-            };
-            headline4 = {
-              pattern = "^#### .*";
-              group = "Headline4";
-            };
-            headline5 = {
-              pattern = "^##### .*";
-              group = "Headline5";
-            };
-            headline6 = {
-              pattern = "^###### .*";
-              group = "Headline6";
-            };
-
             hex_color = lib.generators.mkLuaInline ''require("mini.hipatterns").gen_highlighter.hex_color()'';
             base16_color =
               lib.generators.mkLuaInline # lua
@@ -90,14 +65,6 @@
       bracketed.enable = true;
     };
 
-    luaConfigPost = with colorScheme'; ''
-      vim.api.nvim_set_hl(0, "Headline1", { fg = "${base08}" })
-      vim.api.nvim_set_hl(0, "Headline2", { fg = "${base0A}" })
-      vim.api.nvim_set_hl(0, "Headline3", { fg = "${base0B}" })
-      vim.api.nvim_set_hl(0, "Headline4", { fg = "${base0C}" })
-      vim.api.nvim_set_hl(0, "Headline5", { fg = "${base0D}" })
-      vim.api.nvim_set_hl(0, "Headline6", { fg = "${base0E}" })
-    '';
     keymaps = [
       (util.mkKeymap' "n" "<tab>" ":bn<cr>")
       (util.mkKeymap' "n" "<S-tab>" ":bp<cr>")
