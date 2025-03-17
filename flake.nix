@@ -10,15 +10,6 @@
     nix-colors = {
       url = "github:misterio77/nix-colors";
     };
-
-    plugin-blink-emoji = {
-      url = "github:moyiz/blink-emoji.nvim";
-      flake = false;
-    };
-    plugin-blink-cmp-spell = {
-      url = "github:ribru17/blink-cmp-spell";
-      flake = false;
-    };
   };
 
   outputs =
@@ -38,6 +29,10 @@
           colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
         };
         snippets = pkgs.callPackage ./pkgs/snippets.nix { };
+        inspect = pkgs.writeShellApplication {
+          name = "nvf-inspect-config";
+          text = ''nvim "$(${nvf-config}/bin/nvf-print-config-path)"'';
+        };
       });
 
       devShells = forEachSystem (pkgs: {

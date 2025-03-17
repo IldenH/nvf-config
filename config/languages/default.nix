@@ -1,49 +1,57 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./completion.nix
+
+    # My own versions of some upstream modules
+    ./lspconfig.nix
+    ./nvim-lint.nix
   ];
 
-  vim = {
-    languages = {
-      # Options applied to all languages
-      enableLSP = true;
-      enableFormat = true;
-      enableTreesitter = true;
-      enableExtraDiagnostics = true;
-      enableDAP = true;
+  # NOTE: idk why this had to be enabled, but nvim just crashed without
+  vim.startPlugins = [ "plenary-nvim" ];
 
-      # Languages
-      nix = {
-        enable = true;
-        format = {
-          type = "nixfmt";
-          package = pkgs.nixfmt-rfc-style;
+  my.lspconfig = {
+    enable = true;
+    sources = {
+      ts_ls = { };
+      nixd = {
+        settings.nixd = {
+          diagnostic.suppress = [
+            "sema-escaping-with"
+            "var-bind-to-this"
+          ];
         };
       };
-      markdown = {
-        enable = true;
-        lsp.enable = false;
-        format.type = "prettierd";
-        format.enable = false;
-      };
-      ts.enable = true;
-      python.enable = true;
-      html.enable = true;
-      css.enable = true;
-      tailwind.enable = true;
-      lua.enable = true;
-      haskell.enable = true;
-      svelte.enable = true;
-      astro.enable = true;
-      rust.enable = true;
+      pyright = { };
+      cssls = { };
+      tailwindcss = { };
+      lua_ls = { };
+      hls = { };
+      svelte = { };
+      astro = { };
+      rust_analyzer = { };
     };
+  };
 
+  my.nvim-lint = {
+    enable = true;
+    linters_by_ft = {
+      nix = [
+        "statix"
+        "deadnix"
+      ];
+      tex = [
+        "chktex"
+      ];
+    };
+  };
+
+  vim = {
     lsp = {
       formatOnSave = true;
       # lspkind.enable = true;
       trouble.enable = true;
-      lspSignature.enable = true;
       otter-nvim.enable = true;
       mappings = {
         nextDiagnostic = "<leader>j";
@@ -51,24 +59,72 @@
       };
     };
 
-    debugger = {
-      nvim-dap = {
-        enable = true;
-        ui.enable = true;
+    formatter.conform-nvim = {
+      enable = true;
+      setupOpts = {
+        format_after_save = {
+          lsp_format = "never";
+          async = true;
+        };
+        formatters_by_ft =
+          let
+            mkFormatter =
+              formatters:
+              (lib.attrsets.listToAttrs (map (f: lib.attrsets.nameValuePair "@${f}" f) formatters))
+              // {
+                stop_after_first = true;
+              };
+          in
+          {
+            haskell = mkFormatter [
+              "ormolu"
+            ];
+            html = mkFormatter [
+              "prettierd"
+              "prettier"
+            ];
+            css = mkFormatter [
+              "prettierd"
+              "prettier"
+            ];
+            javascript = mkFormatter [
+              "prettierd"
+              "prettier"
+            ];
+            javascriptreact = mkFormatter [
+              "prettierd"
+              "prettier"
+            ];
+            typescript = mkFormatter [
+              "prettierd"
+              "prettier"
+            ];
+            python = mkFormatter [
+              "black"
+            ];
+            lua = mkFormatter [
+              "stylua"
+            ];
+            nix = mkFormatter [
+              "nixfmt"
+              "alejandra"
+            ];
+            markdown = mkFormatter [
+              "prettierd"
+              "prettier"
+            ];
+            rust = mkFormatter [
+              "rustfmt"
+            ];
+          };
       };
     };
-
-    # startPlugins = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
 
     treesitter = {
       enable = true;
       addDefaultGrammars = true;
       autotagHtml = true;
-      # Maybe just install every single one?
-      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        yaml # Affects obsidian note frontmatter
-        latex
-      ];
+      grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
   };
 }
