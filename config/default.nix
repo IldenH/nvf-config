@@ -9,6 +9,7 @@
     ./notes
     ./snippets
     ./mini.nix
+    ./snacks.nix
     ./oil.nix
     ./hop.nix
   ];

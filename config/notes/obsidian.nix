@@ -119,29 +119,5 @@ in
       (util.mkKeymap "n" "<leader>oi" "<cmd>ObsidianPasteImg<cr>" " Paste img")
       (util.mkKeymap "n" "<leader>oa" "<cmd>ObsidianTags<cr>" " Tags")
     ];
-
-    utility.images.image-nvim = {
-      enable = false;
-      setupOpts = {
-        backend = "kitty";
-        integrations.markdown = {
-          enabled = true;
-          only_render_image_at_cursor = true;
-          download_remote_images = true;
-          clear_in_insert_mode = true;
-          resolve_image_path =
-            lib.generators.mkLuaInline # lua
-              ''
-                function(document_path, image_path, fallback)
-                  if string.find(document_path, "${vault_path}") then
-                    return os.getenv("HOME") .. "/${vault_path}/" .. image_path
-                  else
-                    return fallback(document_path, image_path)
-                  end
-                end
-              '';
-        };
-      };
-    };
   };
 }
