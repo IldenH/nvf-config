@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  util,
+  ...
+}:
 {
   imports = [
     ./completion.nix
@@ -58,6 +63,10 @@
         previousDiagnostic = "<leader>k";
       };
     };
+
+    keymaps = [
+      (util.mkKeymap "n" "<leader>lR" "<cmd>LspRestart<cr>" "LSP Restart")
+    ];
 
     formatter.conform-nvim = {
       enable = true;
