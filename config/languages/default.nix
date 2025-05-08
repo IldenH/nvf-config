@@ -14,7 +14,10 @@
   ];
 
   # NOTE: idk why this had to be enabled, but nvim just crashed without
-  vim.startPlugins = [ "plenary-nvim" ];
+  vim.startPlugins = [
+    "plenary-nvim"
+    pkgs.vimPlugins.plantuml-syntax
+  ];
 
   my.lspconfig = {
     enable = true;
@@ -36,6 +39,9 @@
       svelte = { };
       astro = { };
       rust_analyzer = { };
+      blueprint_ls = { };
+      vala_ls = { };
+      tinymist = { };
     };
   };
 
@@ -75,6 +81,7 @@
           lsp_format = "never";
           async = true;
         };
+        formatters.prettierd.command = lib.getExe pkgs.prettierd;
         formatters_by_ft =
           let
             mkFormatter =
@@ -124,6 +131,9 @@
             ];
             rust = mkFormatter [
               "rustfmt"
+            ];
+            typst = mkFormatter [
+              "typstyle"
             ];
           };
       };
