@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   vim.lazy.plugins."img-clip.nvim" = {
     package = pkgs.vimPlugins.img-clip-nvim;
@@ -13,19 +13,27 @@
     ];
     setupOpts = {
       default = {
-        file_name = "%Y%m%dT%H%M";
+        file_name =
+          lib.generators.mkLuaInline # lua
+            ''
+              function()
+                local input = vim.fn.input({ prompt = "File name: " })
+                return "%Y%m%dT%H%M%S" .. "-" .. input
+              end
+            '';
+        prompt_for_file_name = false;
       };
       filetypes = {
         markdown = {
           template = "![$LABEL]($FILE_PATH)";
         };
         typst = {
-          template = "
-#figure(
-  image(\"$FILE_PATH\"),
-  caption: [$CURSOR],
-) <fig-$LABEL>
-";
+          template = ''
+            #figure(
+              image("$FILE_PATH"),
+              caption: [$CURSOR],
+            ) <fig-$LABEL>
+          '';
         };
       };
     };
