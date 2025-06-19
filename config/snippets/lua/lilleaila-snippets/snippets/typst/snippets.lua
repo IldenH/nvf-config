@@ -1,12 +1,10 @@
 local ls = require("lilleaila-snippets.helpers.ls")
 local s, i, fmta = ls.s, ls.i, ls.fmta
 
-local M = {}
-
 -- local M = {
 --   s("imfig", fmta([[
 --     figure(
---       image("<>", height: 4cm),
+--       image("<>"),
 --       caption: [
 --         <>
 --       ],
@@ -33,7 +31,7 @@ local M = {}
 --       <>
 --     $
 --   ]], { i(1) })),
---   s({ "mm" }, fmta([[
+--   s("mm", fmta([[
 --     $<>$
 --   ]], { i(1) }))
 -- }
