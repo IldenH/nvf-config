@@ -5,7 +5,7 @@
   ...
 }:
 let
-  vault_path = "dev/Vault";
+  vault_path = "Vault";
 in
 {
   vim = {
