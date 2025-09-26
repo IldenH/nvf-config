@@ -42,6 +42,8 @@
       blueprint_ls = { };
       vala_ls = { };
       tinymist = { };
+      html = { };
+      emmet_ls = { };
     };
   };
 
